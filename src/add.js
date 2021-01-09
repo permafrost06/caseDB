@@ -1,4 +1,5 @@
 const ipc = require("electron").ipcRenderer;
+const { remote } = require("electron");
 
 const submitBtn = document.getElementById("submitBtn");
 
@@ -13,8 +14,11 @@ submitBtn.addEventListener("click", (event) => {
 
   ipc.send(
     "add-new-record",
-    `${patient} ${referer} ${specimen} ${gross_exam} ${me}`
+    `${template} ${patient} ${referer} ${specimen} ${gross_exam} ${me}`
   );
+
+  var window = remote.getCurrentWindow();
+  window.close();
 });
 
 function loadTemplate(templateID) {
