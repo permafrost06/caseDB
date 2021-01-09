@@ -21,7 +21,7 @@ addButton.addEventListener("click", () => {
     win = null;
   });
   win.loadFile(modalPath);
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
 });
 
 ipc.on("new-record-added", (event, data) => {
