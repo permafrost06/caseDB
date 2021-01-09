@@ -2,7 +2,7 @@ const { app, BrowserWindow, Menu } = require("electron");
 const ipc = require("electron").ipcMain;
 
 let mainWin = null;
-
+var ret = {};
 const gotTheLock = app.requestSingleInstanceLock();
 
 if (!gotTheLock) {
@@ -58,7 +58,29 @@ if (!gotTheLock) {
   }
 
   app.whenReady().then(createWindow);
+  createDatabase();
+}
+
+function createDatabase() {
+  var sqlite3 = require("sqlite3").verbose();
+  var db = new sqlite3.Database(app.getPath("userData") + "/caseDB.db");
   console.log(app.getPath("userData"));
+  db.serialize(function () {
+    db.run("CREATE TABLE if not exists lorem (info TEXT)");
+
+    var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
+    for (var i = 0; i < 10; i++) {
+      stmt.run("Ipsum " + i);
+    }
+    stmt.finalize();
+
+    db.each("SELECT rowid AS id, info FROM lorem", function (err, row) {
+      ret[row.id] = row.info;
+    });
+    console.log(ret);
+  });
+
+  db.close();
 }
 
 app.on("window-all-closed", () => {
@@ -74,7 +96,7 @@ app.on("activate", () => {
 });
 
 ipc.on("add-new-record", (event, data) => {
-  mainWin.webContents.send("new-record-added", data);
+  mainWin.webContents.send("new-record-added", ret);
 });
 
 ipc.on("report-requested", (event, id) => {

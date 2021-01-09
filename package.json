@@ -21,5 +21,8 @@
       "oneClick": false,
       "perMachine": true
     }
+  },
+  "dependencies": {
+    "sqlite3": "^5.0.1"
   }
 }
