@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add new case | caseDB</title>
+</head>
+
+<body style="background: white;">
+  <form action="">
+    <div>
+      <label for="template">Select template</label>
+      <select name="template" id="template" onchange="loadTemplate(this)">
+        <option value="template1">Template1</option>
+        <option value="template2">Template2</option>
+        <option value="template3">Template3</option>
+      </select>
+    </div>
+    <div>
+      <label for="Patient">Patient name</label>
+      <input value="jon doe" type="name" id="name">
+    </div>
+    <div>
+      <label for="referer">Referer</label>
+      <input value="dr jane doe" type="referer" id="referer">
+    </div>
+    <div>
+      <label for="specimen">Specimen</label>
+      <input value="spec" type="specimen" id="specimen">
+    </div>
+    <div>
+      <label for="gross_exam">Gross Examination</label>
+      <input type="gross_exam" id="gross_exam">
+    </div>
+    <div>
+      <label for="me">M/E</label>
+      <input type="me" id="me">
+    </div>
+    <button type="submit" id="submitBtn">Add</button>
+  </form>
+
+  <script src="add.js"></script>
+</body>
+
+</html>

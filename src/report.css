@@ -1,0 +1,52 @@
+body {
+  height: 210mm; /* DIN A4 standard paper size */
+  width: 297mm;
+}
+.page {
+  margin: 0;
+  /* you don't really have to explicitly set it to 0 unless it's already set to something else */
+}
+
+@media screen {
+  div.page {
+    margin: 1in 1in 1.2in 1in; /* printers usually have a bigger bottom margin*/
+  }
+}
+
+@media print {
+  div.page {
+    margin: 10mm; /* Browser will apply the correct margins when it prints */
+  }
+
+  button {
+    display: none;
+  }
+}
+
+* {
+  font-size: 1.1em;
+}
+
+header h1 {
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-size: 1.25em;
+}
+
+.box {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reference {
+  border: 1px solid black;
+  border-top: none;
+}
+
+h3 {
+  font-weight: 500;
+  margin: 0;
+  margin-top: 1.5em;
+}
